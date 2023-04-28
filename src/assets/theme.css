@@ -1,0 +1,23 @@
+/**
+ * element-plus全局主题样式
+ * 由于权重问题，无法完全覆盖
+ * 1. 选择器使用:root，暂时先使用!important增加权重
+ * 2. 选择器使用body提高权重，此时需要覆盖更加细致的 css变量
+*/
+/* 2 */
+/*body {*/
+/*  --el-color-info: #F2F3F5;*/
+/*}*/
+
+/* 1 */
+:root {
+  --el-color-info: #F2F3F5 !important;
+  --el-color-primary: #146aff !important;
+  --el-input-border-radius: 2px !important;
+  --el-button-text-color: #4E5969 !important;
+}
+
+:root .el-col-25 {
+  width: 20%;
+}
+
