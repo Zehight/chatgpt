@@ -9,6 +9,7 @@ import mdEmoji from 'markdown-it-emoji'
 import asstIcon from '@/assets/image/科技.svg'
 import userIcon from '@/assets/image/观演人.svg'
 import { ElMessage } from 'element-plus'
+import { onMounted } from 'vue'
 
 const md: any = new MarkdownIt({
   html: true,
@@ -81,9 +82,9 @@ async function search() {
 
 <template>
   <TheContainer>
-    <div class="main">
-      <el-scrollbar style="height: 100vh">
-        <div class="allDialog">
+    <div ref="scrollContainerRef" class="main">
+      <el-scrollbar ref="scrollbarRef" style="height: 100vh">
+        <div ref="innerRef" class="allDialog">
           <div v-for="(item, index) in speakListShow" :key="index">
             <el-card
               body-style="display:flex;max-width:800px;margin:auto;min-width:600px"
