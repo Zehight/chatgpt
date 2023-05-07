@@ -3,16 +3,13 @@
 <template>
   <div class="container">
     <el-container>
-<!--      <el-header>-->
-<!--        <TheHeader/>-->
-<!--      </el-header>-->
       <el-container>
-        <el-aside class="aside">
-          <TheMenu/>
-        </el-aside>
+        <!--        <el-aside class="aside">-->
+        <!--          <TheMenu/>-->
+        <!--        </el-aside>-->
         <el-container>
           <TheMain>
-            <slot/>
+            <slot />
           </TheMain>
         </el-container>
       </el-container>

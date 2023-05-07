@@ -45,16 +45,7 @@ export function getUserInfo() {
 }
 
 // 接口
-export * as Auth from './services/auth'
-export * as Dept from './services/dept'
-export * as Search from './services/search'
-export * as Role from './services/role'
-export * as User from './services/user'
-export * as Detail from './services/detail'
-export * as Violation from './services/violation'
-export * as Compare from './services/compare'
-export * as CompareHistory from './services/compareHistory'
-export * as CompanyReport from './services/companyReport'
+export * as Fast from './services/fast'
 
 // 类型
 export { ResponseCode } from '@/@types/http.d'
