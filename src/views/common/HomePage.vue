@@ -9,6 +9,7 @@ import mdEmoji from 'markdown-it-emoji'
 import asstIcon from '@/assets/image/科技.svg'
 import userIcon from '@/assets/image/观演人.svg'
 import { ElMessage } from 'element-plus'
+import { v4 as uuidv4 } from 'uuid'
 import { onMounted } from 'vue'
 
 const md: any = new MarkdownIt({
@@ -32,25 +33,24 @@ const route = useRoute()
 
 const disabled = ref(false)
 const question = ref(route.query.q)
-const speakListSend: any = ref([])
 const speakListShow: any = ref([])
 
 const text = ref('')
 const markdownText: any = ref()
 
+const uniqueId = uuidv4().replace(/-/g, '')
+
 async function search() {
   markdownText.value = ''
   text.value = ''
   disabled.value = true
-  speakListSend.value.push(
-    JSON.stringify({ role: 'user', content: question.value }),
-  )
   speakListShow.value.push({ role: 'user', content: question.value })
   const sse = new EventSource(
-    `https://api.miragari.com/fast/streamChatLong?q=${speakListSend.value}`,
+    `${import.meta.env.VITE_APP_BASEURL}/streamChatLong?q=${
+      question.value
+    }&id=${uniqueId}`,
   )
   speakListShow.value.push({ role: 'assistant', content: '' })
-  speakListSend.value.push('')
   sse.onmessage = (e) => {
     const result = JSON.parse(e.data).choices[0].delta
     if (result.content) {
@@ -59,10 +59,6 @@ async function search() {
     markdownText.value = md.render(text.value)
     speakListShow.value[speakListShow.value.length - 1].content =
       markdownText.value
-    speakListSend.value[speakListShow.value.length - 1] = JSON.stringify({
-      role: 'assistant',
-      content: text.value,
-    })
   }
   sse.onerror = (e) => {
     sse.close()
@@ -72,10 +68,15 @@ async function search() {
   }
   sse.addEventListener('stop', async (event) => {
     sse.close()
+    const res = await Fast.getTokenNum({ question: speakListShow.value })
+    const saveRes = await Fast.toSave({
+      id: uniqueId,
+      question: question.value,
+      answer: text.value,
+    })
     question.value = ''
     disabled.value = false
-    const res = await Fast.getTokenNum({ question: speakListShow.value })
-    console.log(res)
+    console.log(res, saveRes)
   })
 }
 </script>

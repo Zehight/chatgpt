@@ -4,9 +4,9 @@
   <div class="container">
     <el-container>
       <el-container>
-        <!--        <el-aside class="aside">-->
-        <!--          <TheMenu/>-->
-        <!--        </el-aside>-->
+        <el-aside class="aside">
+          <TheMenu />
+        </el-aside>
         <el-container>
           <TheMain>
             <slot />

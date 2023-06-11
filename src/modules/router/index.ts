@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { useKAComponent } from '@/modules/store'
 
-
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/notfount',
@@ -10,12 +9,12 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    name: 'Index',
-    component: () => import('@/views/common/HomePage.vue'),
+    name: 'Login',
+    component: () => import('@/views/common/Login.vue'),
   },
   {
-    path: '/homepage',
-    name: 'HomePage',
+    path: '/gpt',
+    name: 'gpt',
     component: () => import('@/views/common/HomePage.vue'),
   },
   {
@@ -43,7 +42,5 @@ const router = createRouter({
     return { x: 0, y: 0 }
   },
 })
-
-
 
 export default router

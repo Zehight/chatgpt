@@ -15,12 +15,12 @@ function getBase(mode: string) {
     return '/'
   }
   if (mode === 'dev') {
-    return '/gpt/'
+    return '/'
   }
   if (mode === 'prod') {
-    return '/gpt/'
+    return '/'
   }
-  return '/gpt/'
+  return '/'
 }
 
 // https://vitejs.dev/config/
